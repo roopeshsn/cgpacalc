@@ -6,7 +6,6 @@ function App() {
   const [subjects, setSubjects] = useState([
     {credit0: "", gradePoint0: ""},
   ])
-
   const [count, setCount] = useState(1)
   const [computedResults, setComputedResults] = useState(null)
 
@@ -38,7 +37,7 @@ function App() {
 
   function handleRemoveInputField(idx) {
     let values = [...subjects]
-    console.log(idx)
+    // console.log(idx)
     values.splice(idx, 1)
     setSubjects(values)
     setCount(count-1)
@@ -46,10 +45,11 @@ function App() {
 
   function handleSubmit(e) {
     e.preventDefault()
-    console.log(subjects)
+    // console.log(subjects)
     computeCgpa()
   }
 
+  // computes CGPA score
   function computeCgpa() {
     const computedSubjects = subjects.map(function (subject, idx) {
       const newCreditPoints = generateNewCreditPoints(idx)
@@ -59,7 +59,7 @@ function App() {
       return newComputedSubject
     })
 
-    console.log(computedSubjects)
+    // console.log(computedSubjects)
 
     let totalCredits = computedSubjects.map((subject, idx) => subject[`credit${idx}`]).reduce((prev, next) => Number(prev) + Number(next))
     let totalCreditPoints = computedSubjects.map((subject, idx) => subject[`creditPoints${idx}`]).reduce((prev, next) => Number(prev) + Number(next))
@@ -73,10 +73,10 @@ function App() {
 
     setComputedResults(results)
 
-    console.log(totalCredits, totalCreditPoints, cgpa)
+    // console.log(totalCredits, totalCreditPoints, cgpa)
   }
 
-  console.log(computedResults)
+  // console.log(computedResults)
 
   return (
     <div className="App">
